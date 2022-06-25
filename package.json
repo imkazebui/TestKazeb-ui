@@ -28,15 +28,10 @@
     "lint": "eslint -c .eslintrc.js --max-warnings=0 --fix --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier --config .prettierrc.json -w *"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn run lint",
-      "yarn run format"
+      "yarn lint",
+      "yarn format"
     ]
   },
   "browserslist": {
