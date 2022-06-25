@@ -10,7 +10,6 @@ interface IButtonProps {
 
 const Button: React.FC<IButtonProps> = (props) => {
   const { type = 'button', className = '', children } = props;
-  console.log('cd');
   return (
     <button
       type={type}
