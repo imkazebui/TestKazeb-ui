@@ -25,9 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint -c .eslintrc.js --max-warnings=0 --ext .js,.jsx,.ts,.tsx .",
-    "lint:fix": "yarn lint --fix",
-    "prettier": "prettier --config .prettierrc.json -w *"
+    "lint": "eslint -c .eslintrc.js --max-warnings=0 --fix --ext .js,.jsx,.ts,.tsx .",
+    "format": "prettier --config .prettierrc.json -w *"
   },
   "husky": {
     "hooks": {
@@ -36,8 +35,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn run lint:fix",
-      "yarn run prettier"
+      "yarn run lint",
+      "yarn run format"
     ]
   },
   "browserslist": {
