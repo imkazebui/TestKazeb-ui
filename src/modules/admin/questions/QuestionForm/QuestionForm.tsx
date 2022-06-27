@@ -43,7 +43,7 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
   }, [initialValues]);
 
   return (
-    <div className="grid grid-cols-1 gap-6">
+    <>
       <FormItem label="Category">
         <Input value={formValues.category} />
       </FormItem>
@@ -71,7 +71,7 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
       <FormItem label="Answer">
         <Input value={formValues.answer} />
       </FormItem>
-    </div>
+    </>
   );
 };
 

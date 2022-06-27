@@ -1,26 +1,34 @@
 import React from 'react';
-import { Route, Link, Outlet } from 'react-router-dom';
+import { Outlet, Route } from 'react-router-dom';
 
-import Test from './test/Test';
-import Question from './question/Question';
+import { Navigation } from '../../components/organisms';
+import { Button } from '../../components/atoms';
+import Tests from './tests/Test';
+import renderQuestionsRoutes from './questions/Question';
 
 const AdminPage = () => (
   <>
-    <p>Admin Page</p>
-    <nav>
-      <Link to="test">Test</Link>
-    </nav>
-    <nav>
-      <Link to="question">Question</Link>
-    </nav>
-    <Outlet />
+    <Navigation />
+    <header className="flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div className="grow">
+        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+      </div>
+      <div className="grow-0">
+        <Button>Create</Button>
+      </div>
+    </header>
+    <main>
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <Outlet />
+      </div>
+    </main>
   </>
 );
 
 const renderAdminRoutes = () => (
   <Route path="admin" element={<AdminPage />}>
-    <Route path="test" element={<Test />} />
-    <Route path="question" element={<Question />} />
+    <Route path="tests" element={<Tests />} />
+    {renderQuestionsRoutes()}
   </Route>
 );
 

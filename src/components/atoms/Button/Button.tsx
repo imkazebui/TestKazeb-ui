@@ -14,7 +14,7 @@ const Button: React.FC<IButtonProps> = (props) => {
     <button
       type={type}
       className={classNames(
-        'py-2 px-3 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg shadow-blue-500/50 focus:outline-none',
+        'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
         className
       )}
     >
