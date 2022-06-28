@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface IRadioInputProps {
+export interface IRadioInputProps {
   className?: string;
 }
 
 const RadioInput: React.FC<IRadioInputProps> = (props) => {
   const { className = '' } = props;
   return (
-    <div className={classNames('mt-4 space-y-4', className)}>
+    <div className={classNames('space-y-4', className)}>
       <div className="flex items-center">
         <input
           id="push-everything"

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface ISelectProps {
+export interface ISelectProps {
   name: string;
   className?: string;
   id?: string;

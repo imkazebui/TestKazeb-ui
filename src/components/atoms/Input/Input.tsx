@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-interface IIputProps {
+export interface IIputProps {
   type?:
     | 'text'
     | 'email'
@@ -27,19 +27,22 @@ const Input: React.FC<IIputProps> = (props) => {
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setInputValue(inputValue);
+    setInputValue(value);
   }, [value]);
 
-  const handleChangeValue = (e: React.FormEvent<HTMLInputElement>): void => {
-    const newValue = e.currentTarget.value;
+  const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newValue = e.target.value;
     setInputValue(newValue);
+    /**
+     * TODO: need to add debounce
+     */
     if (onChange) onChange(newValue);
   };
 
   return (
     <input
       type={type}
-      value={value}
+      value={inputValue}
       onChange={handleChangeValue}
       className={classNames(
         'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md',

@@ -2,10 +2,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface IButtonProps {
+export interface IButtonProps {
   type?: 'button' | 'submit' | 'reset';
   className?: string;
-  children: React.ReactNode;
+  children: string | React.ReactNode;
 }
 
 const Button: React.FC<IButtonProps> = (props) => {

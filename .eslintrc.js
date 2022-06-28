@@ -6,17 +6,13 @@ module.exports = {
   extends: ['airbnb', 'plugin:react/recommended', 'plugin:import/typescript', 'plugin:import/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: { jsx: true },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint', 'import'],
   settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
+    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
     'import/extensions': ['.js', '.jsx', '.ts'],
     'import/resolver': {
       typescript: {
@@ -24,6 +20,7 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
     'react/function-component-definition': 0,
@@ -61,4 +58,16 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['**/*.stories.*'],
+      rules: {
+        'import/no-anonymous-default-export': 'off',
+        'import/no-extraneous-dependencies': 0,
+        'object-curly-newline': 0,
+        'react/jsx-props-no-spreading': 0,
+        'import/prefer-default-export': 0,
+      },
+    },
+  ],
 };

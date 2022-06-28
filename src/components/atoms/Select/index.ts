@@ -1,3 +1,4 @@
-import Select from './Select';
+import Select, { ISelectProps } from './Select';
 
 export default Select;
+export type { ISelectProps };

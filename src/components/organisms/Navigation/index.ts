@@ -1,3 +1,4 @@
-import Navigation from './Navigation';
+import Navigation, { INavigationProps } from './Navigation';
 
 export default Navigation;
+export type { INavigationProps };

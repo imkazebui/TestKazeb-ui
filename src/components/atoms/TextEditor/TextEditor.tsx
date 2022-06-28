@@ -7,7 +7,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import 'react-quill/dist/quill.snow.css';
 import 'highlight.js/styles/monokai-sublime.css';
 
-interface ITextEditorProps {
+export interface ITextEditorProps {
   value?: string;
 }
 

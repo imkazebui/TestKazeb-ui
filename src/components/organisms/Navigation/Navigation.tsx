@@ -4,7 +4,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-interface INavigationProps {
+export interface INavigationProps {
   className?: string;
 }
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface ICheckboxProps {
+export interface ICheckboxProps {
   className?: string;
 }
 
 const Checkbox: React.FC<ICheckboxProps> = (props) => {
   const { className = '' } = props;
   return (
-    <div className={classNames('mt-4 space-y-4', className)}>
+    <div className={classNames('space-y-4', className)}>
       <div className="flex items-start">
         <div className="flex items-center h-5">
           <input

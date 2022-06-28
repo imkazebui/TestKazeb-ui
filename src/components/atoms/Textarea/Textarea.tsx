@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface ITextareaProps {
+export interface ITextareaProps {
   name: string;
   className?: string;
   id?: string;
