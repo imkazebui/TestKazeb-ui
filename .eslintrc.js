@@ -20,7 +20,7 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'tailwind.config.js'],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
     'react/function-component-definition': 0,
