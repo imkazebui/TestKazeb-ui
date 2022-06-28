@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface IFormItemProps {
+export interface IFormItemProps {
   label?: string;
   name?: string;
   className?: string;

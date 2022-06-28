@@ -17,7 +17,7 @@ const modules = { syntax: { highlight: (text: string) => hljs.highlightAuto(text
 
 const TextEditor: React.FC<ITextEditorProps> = (props) => {
   const { value = '' } = props;
-  return <ReactQuill value={value} modules={modules} />;
+  return <ReactQuill value={value} modules={modules} className="mt-1" />;
 };
 
 export default TextEditor;

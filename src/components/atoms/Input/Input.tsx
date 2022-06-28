@@ -17,12 +17,14 @@ export interface IIputProps {
     | 'week';
   className?: string;
   value?: string;
+  name: string;
+  id?: string;
   // eslint-disable-next-line no-unused-vars
   onChange?: (newValue: string) => void;
 }
 
 const Input: React.FC<IIputProps> = (props) => {
-  const { type = 'text', className = '', value = '', onChange } = props;
+  const { name, id = '', type = 'text', className = '', value = '', onChange } = props;
 
   const [inputValue, setInputValue] = useState('');
 
@@ -41,6 +43,8 @@ const Input: React.FC<IIputProps> = (props) => {
 
   return (
     <input
+      id={id || name}
+      name={name}
       type={type}
       value={inputValue}
       onChange={handleChangeValue}
