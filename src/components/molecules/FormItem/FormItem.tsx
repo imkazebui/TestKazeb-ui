@@ -11,10 +11,12 @@ interface IFormItemProps {
 const FormItem: React.FC<IFormItemProps> = (props) => {
   const { label = '', name = '', className = '', children } = props;
   return (
-    <label htmlFor={name} className={classNames('block', className)}>
-      <span className="text-gray-700">{label}</span>
+    <div className={classNames(className)}>
+      <label htmlFor={name} className={classNames('block text-sm font-medium text-gray-700')}>
+        {label}
+      </label>
       {children}
-    </label>
+    </div>
   );
 };
 

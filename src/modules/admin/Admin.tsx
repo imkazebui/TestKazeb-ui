@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, Route } from 'react-router-dom';
+import { Outlet, Route, Link } from 'react-router-dom';
 
 import { Navigation } from '../../components/organisms';
 import { Button } from '../../components/atoms';
@@ -14,7 +14,9 @@ const AdminPage = () => (
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
       </div>
       <div className="grow-0">
-        <Button>Create</Button>
+        <Button>
+          <Link to="questions/create">Create</Link>
+        </Button>
       </div>
     </header>
     <main>

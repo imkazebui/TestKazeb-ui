@@ -42,7 +42,7 @@ const Input: React.FC<IIputProps> = (props) => {
       value={value}
       onChange={handleChangeValue}
       className={classNames(
-        'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50',
+        'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md',
         className
       )}
     />

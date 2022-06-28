@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint -c .eslintrc.js --max-warnings=0 --fix --ext .js,.jsx,.ts,.tsx .",
+    "lint": "eslint -c .eslintrc.js --max-warnings=2 --fix --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier --config .prettierrc.json -w *"
   },
   "lint-staged": {
