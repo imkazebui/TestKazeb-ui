@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
 import { Input, Button, TextEditor } from '../../../../components/atoms';
-import { FormItem } from '../../../../components/molecules';
+import { FormItem, RadioGroup } from '../../../../components/molecules';
+
+import { IQuestion } from '../../../../hooks/api/useQuestions';
 
 interface IQuestionForm {
-  initialValues?: {
-    category: string;
-    type: string;
-    question: string;
-    input: string;
-    options: string[];
-    answer: string;
-  };
+  initialValues?: IQuestion;
 }
 
 const defaultValues = {
   category: 'Javascript',
   type: 'MULTIPLE_CHOICE',
-  question: '',
-  input: `<pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">const</span> App = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  question: `<pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">const</span> App = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
 &nbsp;<span class="hljs-keyword">const</span> [counter, setCounter] = useState(<span class="hljs-number">0</span>);
 &nbsp;useEffect(
 &nbsp;&nbsp;&nbsp;<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -45,11 +39,38 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
     setFormValues(formValues);
   }, [initialValues]);
 
+  const options = [
+    {
+      label: <TextEditor />,
+      value: 0,
+    },
+    {
+      label: <TextEditor />,
+      value: 1,
+    },
+    {
+      label: <TextEditor />,
+      value: 2,
+    },
+    {
+      label: <TextEditor />,
+      value: 3,
+    },
+  ];
+
   return (
     <form action="#" method="POST">
       <div className="shadow overflow-hidden sm:rounded-md">
         <div className="px-4 py-5 bg-white sm:p-6">
           <div className="grid grid-cols-6 gap-6">
+            <FormItem name="questionInput" label="Question " className="col-span-6">
+              <TextEditor value={formValues.question} />
+            </FormItem>
+
+            <FormItem name="questionOptions" label="Options " className="col-span-6">
+              <RadioGroup disabled options={options} />
+            </FormItem>
+
             <FormItem name="questionCategory" label="Category" className="col-span-2">
               <Input name="questionCategory" />
             </FormItem>
@@ -62,10 +83,6 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
               <Input name="questionLevel" />
             </FormItem>
 
-            <FormItem name="questionInput" label="Question " className="col-span-6">
-              <TextEditor />
-            </FormItem>
-
             <div className="col-span-6 sm:col-span-3">
               <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                 Country
@@ -74,7 +91,7 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
                 id="country"
                 name="country"
                 autoComplete="country-name"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
               >
                 <option>United States</option>
                 <option>Canada</option>

@@ -15,7 +15,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
             id="comments"
             name="comments"
             type="checkbox"
-            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300 rounded"
           />
         </div>
         <div className="ml-3 text-sm">
@@ -31,7 +31,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
             id="candidates"
             name="candidates"
             type="checkbox"
-            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300 rounded"
           />
         </div>
         <div className="ml-3 text-sm">
@@ -47,14 +47,16 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
             id="offers"
             name="offers"
             type="checkbox"
-            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            className="focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300 rounded"
           />
         </div>
         <div className="ml-3 text-sm">
           <label htmlFor="offers" className="font-medium text-gray-700">
             Offers
           </label>
-          <p className="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+          <p className="text-gray-500">
+            Get notified when a candidate accepts or rejects an offer.
+          </p>
         </div>
       </div>
     </div>

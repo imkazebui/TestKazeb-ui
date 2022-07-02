@@ -12,7 +12,7 @@ const FormItem: React.FC<IFormItemProps> = (props) => {
   const { label = '', name = '', className = '', children } = props;
   return (
     <div className={classNames(className)}>
-      <label htmlFor={name} className={classNames('block text-sm font-medium text-gray-700')}>
+      <label htmlFor={name} className={classNames('mb-1 block text-sm font-medium text-gray-700')}>
         {label}
       </label>
       {children}

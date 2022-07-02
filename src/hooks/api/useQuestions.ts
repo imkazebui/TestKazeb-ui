@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import axios from '../../utilities/axios';
 
-interface IQuestionData {
+export interface IQuestion {
   _id: number;
   question: string;
   type: string;
@@ -10,13 +10,13 @@ interface IQuestionData {
 }
 
 export const useGetQuestions = () =>
-  useQuery<IQuestionData[], any>('questions', async () => {
+  useQuery<IQuestion[], any>('questions', async () => {
     const { data } = await axios.get('/questions');
     return data;
   });
 
 export const useGetQuestion = (id: number | string) =>
-  useQuery<IQuestionData, any>(['question', id], async () => {
+  useQuery<IQuestion, any>(['question', id], async () => {
     const { data } = await axios.get(`/questions/${id}`);
     return data;
   });

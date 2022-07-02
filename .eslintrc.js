@@ -27,6 +27,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/require-default-props': 0,
     'object-curly-newline': 0,
+    'react/jsx-curly-newline': 0,
     'import/extensions': [
       'error',
       'ignorePackages',
