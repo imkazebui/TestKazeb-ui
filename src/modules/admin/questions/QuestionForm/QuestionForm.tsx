@@ -58,11 +58,11 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
               <Input name="questionType" />
             </FormItem>
 
-            <FormItem name="questionInput" label="Question " className="col-span-4">
-              <Input name="questionName" />
+            <FormItem name="questionLevel" label="Level" className="col-span-2">
+              <Input name="questionLevel" />
             </FormItem>
 
-            <FormItem name="questionInput" label="Input" className="col-span-6">
+            <FormItem name="questionInput" label="Question " className="col-span-6">
               <TextEditor />
             </FormItem>
 

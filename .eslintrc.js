@@ -26,7 +26,7 @@ module.exports = {
     'react/function-component-definition': 0,
     'react/prop-types': 0,
     'react/require-default-props': 0,
-    'object-curly-newline': ['error', { multiline: true }],
+    'object-curly-newline': 0,
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -57,6 +57,9 @@ module.exports = {
         depth: 3,
       },
     ],
+    'implicit-arrow-linebreak': 0,
+    'import/prefer-default-export': 0,
+    'react/jsx-one-expression-per-line': 0,
   },
   overrides: [
     {
