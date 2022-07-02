@@ -7,6 +7,11 @@ export interface IQuestion {
   type: string;
   category: string;
   level: string;
+  options: {
+    id: number;
+    text: string;
+  }[];
+  answer: number;
 }
 
 export const useGetQuestions = () =>

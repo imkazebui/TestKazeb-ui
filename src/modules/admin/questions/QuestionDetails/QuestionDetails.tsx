@@ -16,11 +16,9 @@ const QuestionDetails: React.FC<IQuestionDetails> = () => {
 
   if (!questionId) return null;
 
-  const { data = {} } = useGetQuestion(questionId);
+  const { data } = useGetQuestion(questionId);
 
-  console.log({ data });
-
-  return <QuestionForm />;
+  return <QuestionForm data={data} />;
 };
 
 export default QuestionDetails;

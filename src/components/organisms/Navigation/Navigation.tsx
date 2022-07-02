@@ -47,7 +47,9 @@ const AdminNavigation: React.FC<INavigationProps> = (props) => {
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          item.current ? 'font-bold border-solid border-2 border-emerald-700' : 'font-light',
+                          item.current
+                            ? 'font-bold border-solid border-2 border-emerald-700'
+                            : 'font-light',
                           'px-3 py-2 rounded-md text-sm'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -127,7 +129,9 @@ const AdminNavigation: React.FC<INavigationProps> = (props) => {
                   key={item.name}
                   to={item.href}
                   className={classNames(
-                    item.current ? 'font-bold border-solid border-2 border-emerald-700' : 'font-light',
+                    item.current
+                      ? 'font-bold border-solid border-2 border-emerald-700'
+                      : 'font-light',
                     'block px-3 py-2 rounded-md text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}

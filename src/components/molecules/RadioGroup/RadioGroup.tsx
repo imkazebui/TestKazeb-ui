@@ -7,16 +7,24 @@ import classNames from 'classnames';
 export interface IRadioGroupProps {
   // className?: string;
   disabled?: boolean;
-  options: {
-    label: string | React.ReactNode;
-    value: string | number;
-  }[];
+  options:
+    | any[]
+    | {
+        label: string | React.ReactNode;
+        value: string | number;
+      }[];
+  fieldNames?: {
+    label: string;
+    value: string;
+  };
 }
 
 const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
-  const { disabled = false, options } = props;
+  const { disabled = false, options, fieldNames = { label: 'label', value: 'value' } } = props;
 
-  const [selected, setSelected] = useState(options[0]);
+  if (!options.length) return null;
+
+  const [selected, setSelected] = useState(options[0][fieldNames.value]);
 
   return (
     <div className="w-full">
@@ -24,8 +32,8 @@ const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
         <div className="space-y-2">
           {options.map((option) => (
             <RadioGroupUI.Option
-              key={option.value}
-              value={option.value}
+              key={option[fieldNames.value]}
+              value={option[fieldNames.value]}
               className={({ active, checked }) =>
                 `${active ? '' : ''}
                   ${checked ? '' : ''}
@@ -41,7 +49,7 @@ const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
                       className={classNames('h-5 w-5 text-emerald-700', { invisible: !checked })}
                     />
                   </div>
-                  <div className="flex-1 items-center">{option.label}</div>
+                  <div className="flex-1 items-center">{option[fieldNames.label]}</div>
                 </div>
               )}
             </RadioGroupUI.Option>

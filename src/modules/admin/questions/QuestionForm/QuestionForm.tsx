@@ -6,81 +6,71 @@ import { FormItem, RadioGroup } from '../../../../components/molecules';
 import { IQuestion } from '../../../../hooks/api/useQuestions';
 
 interface IQuestionForm {
-  initialValues?: IQuestion;
+  data?: IQuestion;
 }
 
 const defaultValues = {
   category: 'Javascript',
   type: 'MULTIPLE_CHOICE',
-  question: `<pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">const</span> App = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
-&nbsp;<span class="hljs-keyword">const</span> [counter, setCounter] = useState(<span class="hljs-number">0</span>);
-&nbsp;useEffect(
-&nbsp;&nbsp;&nbsp;<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello'</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setCounter(<span class="hljs-number">1</span>);
-&nbsp;&nbsp;&nbsp;},
-&nbsp;&nbsp;&nbsp;[props.visible]
-&nbsp;);
-&nbsp;<span class="hljs-keyword">return</span> <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{counter}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
-};
-</pre>`,
-  options: ['', '', '', ''],
-  answer: '0',
+  level: 'INTERMEDIATE',
+  question: '',
+  options: [],
+  answer: 0,
 };
 
 const QuestionForm: React.FC<IQuestionForm> = (props) => {
-  const { initialValues = defaultValues } = props;
-  const [formValues, setFormValues] = useState(initialValues);
+  const { data = defaultValues } = props;
+  const [formValues, setFormValues] = useState<Omit<IQuestion, '_id'>>(defaultValues);
+  const [options, setOptions] = useState<
+    {
+      label: string | React.ReactNode;
+      value: string | number;
+    }[]
+  >(defaultValues.options);
 
   useEffect(() => {
-    /**
-     * TODO: should update initialValues instead of formValues
-     */
-    setFormValues(formValues);
-  }, [initialValues]);
+    const newOptions = Array.from(Array(4).keys()).map((o) => ({
+      value: o,
+      label: <TextEditor />,
+    }));
 
-  const options = [
-    {
-      label: <TextEditor />,
-      value: 0,
-    },
-    {
-      label: <TextEditor />,
-      value: 1,
-    },
-    {
-      label: <TextEditor />,
-      value: 2,
-    },
-    {
-      label: <TextEditor />,
-      value: 3,
-    },
-  ];
+    setOptions(newOptions);
+  }, []);
+
+  useEffect(() => {
+    setFormValues(data);
+
+    const newOptions = data.options.map((o) => ({
+      value: o.id,
+      label: <TextEditor value={o.text} />,
+    }));
+
+    setOptions(newOptions);
+  }, [data]);
 
   return (
     <form action="#" method="POST">
       <div className="shadow overflow-hidden sm:rounded-md">
         <div className="px-4 py-5 bg-white sm:p-6">
           <div className="grid grid-cols-6 gap-6">
-            <FormItem name="questionInput" label="Question " className="col-span-6">
+            <FormItem name="questionInput" label="Question" className="col-span-6">
               <TextEditor value={formValues.question} />
             </FormItem>
 
             <FormItem name="questionOptions" label="Options " className="col-span-6">
-              <RadioGroup disabled options={options} />
+              <RadioGroup options={options} />
             </FormItem>
 
             <FormItem name="questionCategory" label="Category" className="col-span-2">
-              <Input name="questionCategory" />
+              <Input name="questionCategory" value={data.category} />
             </FormItem>
 
             <FormItem name="questionType" label="Type" className="col-span-2">
-              <Input name="questionType" />
+              <Input name="questionType" value={data.type} />
             </FormItem>
 
             <FormItem name="questionLevel" label="Level" className="col-span-2">
-              <Input name="questionLevel" />
+              <Input name="questionLevel" value={data.level} />
             </FormItem>
 
             <div className="col-span-6 sm:col-span-3">

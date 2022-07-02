@@ -29,7 +29,9 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
     if (status === 'error') {
       return (
         <tr>
-          <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">Error: {error?.message}</td>
+          <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">
+            Error: {error?.message}
+          </td>
         </tr>
       );
     }
@@ -55,7 +57,9 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
 
     return (
       <tr>
-        <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">Background Updating...</td>
+        <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">
+          Background Updating...
+        </td>
       </tr>
     );
   };
@@ -64,7 +68,9 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
     <table className={classNames('border-collapse table-auto w-full text-sm bg-white', className)}>
       <thead>
         <tr>
-          <th className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">Question</th>
+          <th className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">
+            Question
+          </th>
           <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Type</th>
           <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Category</th>
           <th className="border-b  font-medium p-4 pr-8  pb-3 text-slate-400  text-left">Level</th>
