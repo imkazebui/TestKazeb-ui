@@ -3,7 +3,7 @@ import { Outlet, Route, Link } from 'react-router-dom';
 
 import { Navigation } from '../../components/organisms';
 import { Button } from '../../components/atoms';
-import Tests from './tests/Test';
+import renderTestsRoutes from './tests/Test';
 import renderQuestionsRoutes from './questions/Question';
 
 const AdminPage = () => (
@@ -29,7 +29,7 @@ const AdminPage = () => (
 
 const renderAdminRoutes = () => (
   <Route path="admin" element={<AdminPage />}>
-    <Route path="tests" element={<Tests />} />
+    {renderTestsRoutes()}
     {renderQuestionsRoutes()}
   </Route>
 );

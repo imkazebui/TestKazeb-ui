@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import classNames from 'classnames';
 import { RadioGroup as RadioGroupUI } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/outline';
@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 export interface IRadioGroupProps {
   // className?: string;
+  selected: string | number;
   disabled?: boolean;
   options:
     | any[]
@@ -17,18 +18,30 @@ export interface IRadioGroupProps {
     label: string;
     value: string;
   };
+  // eslint-disable-next-line no-unused-vars
+  onChange?(value: string | number): void;
 }
 
 const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
-  const { disabled = false, options, fieldNames = { label: 'label', value: 'value' } } = props;
+  const {
+    disabled = false,
+    options,
+    fieldNames = { label: 'label', value: 'value' },
+    onChange,
+    selected,
+  } = props;
 
   if (!options.length) return null;
 
-  const [selected, setSelected] = useState(options[0][fieldNames.value]);
+  const handleOnChange = (value: string): void => {
+    if (onChange) {
+      onChange(value);
+    }
+  };
 
   return (
     <div className="w-full">
-      <RadioGroupUI value={selected} onChange={setSelected} disabled={disabled}>
+      <RadioGroupUI value={selected} onChange={handleOnChange} disabled={disabled}>
         <div className="space-y-2">
           {options.map((option) => (
             <RadioGroupUI.Option

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import axios from '../../utilities/axios';
 
 export interface IQuestion {
@@ -25,3 +25,7 @@ export const useGetQuestion = (id: number | string) =>
     const { data } = await axios.get(`/questions/${id}`);
     return data;
   });
+
+export const useUpdateQuestion = () =>
+  // eslint-disable-next-line no-underscore-dangle
+  useMutation((question: IQuestion) => axios.put(`/questions/${question._id}`, question));

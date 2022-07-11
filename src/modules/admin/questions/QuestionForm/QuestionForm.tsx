@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { Input, Button, TextEditor } from '../../../../components/atoms';
 import { FormItem, RadioGroup } from '../../../../components/molecules';
 
-import { IQuestion } from '../../../../hooks/api/useQuestions';
+import { IQuestion, useUpdateQuestion } from '../../../../hooks/api/useQuestions';
 
 interface IQuestionForm {
   data?: IQuestion;
 }
 
 const defaultValues = {
+  _id: 1,
   category: 'Javascript',
   type: 'MULTIPLE_CHOICE',
   level: 'INTERMEDIATE',
@@ -20,13 +21,14 @@ const defaultValues = {
 
 const QuestionForm: React.FC<IQuestionForm> = (props) => {
   const { data = defaultValues } = props;
-  const [formValues, setFormValues] = useState<Omit<IQuestion, '_id'>>(defaultValues);
+  const [formValues, setFormValues] = useState<IQuestion>(defaultValues);
   const [options, setOptions] = useState<
     {
       label: string | React.ReactNode;
       value: string | number;
     }[]
   >(defaultValues.options);
+  const updateQuestion = useUpdateQuestion();
 
   useEffect(() => {
     const newOptions = Array.from(Array(4).keys()).map((o) => ({
@@ -48,6 +50,17 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
     setOptions(newOptions);
   }, [data]);
 
+  const onChangeAnswer = (answer: number) => {
+    setFormValues((preFormData: IQuestion) => {
+      const newFormData: IQuestion = { ...preFormData, answer };
+      return newFormData;
+    });
+  };
+
+  const handleSave = () => {
+    updateQuestion.mutate(formValues);
+  };
+
   return (
     <form action="#" method="POST">
       <div className="shadow overflow-hidden sm:rounded-md">
@@ -58,7 +71,11 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
             </FormItem>
 
             <FormItem name="questionOptions" label="Options " className="col-span-6">
-              <RadioGroup options={options} />
+              <RadioGroup
+                options={options}
+                onChange={onChangeAnswer}
+                selected={formValues.answer}
+              />
             </FormItem>
 
             <FormItem name="questionCategory" label="Category" className="col-span-2">
@@ -91,7 +108,7 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
           </div>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <Button>Save</Button>
+          <Button onClick={handleSave}>Save</Button>
         </div>
       </div>
     </form>
