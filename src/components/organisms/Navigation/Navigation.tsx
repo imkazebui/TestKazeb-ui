@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom';
 
 export interface INavigationProps {
   className?: string;
+  navigation?: {
+    name: string;
+    href: string;
+    current?: boolean;
+  }[];
 }
 
 const user = {
@@ -14,7 +19,7 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
-const navigation = [
+const navigationDefault = [
   { name: 'Tests', href: 'tests', current: true },
   { name: 'Questions', href: 'questions', current: false },
 ];
@@ -25,7 +30,7 @@ const userNavigation = [
 ];
 
 const AdminNavigation: React.FC<INavigationProps> = (props) => {
-  const { className = '' } = props;
+  const { className = '', navigation = navigationDefault } = props;
   return (
     <Disclosure as="nav" className={classNames('bg-white shadow', className)}>
       {({ open }) => (
@@ -34,11 +39,13 @@ const AdminNavigation: React.FC<INavigationProps> = (props) => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
-                    className="h-8 w-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
-                  />
+                  <Link to="/">
+                    <img
+                      className="h-8 w-8"
+                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                      alt="Workflow"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
