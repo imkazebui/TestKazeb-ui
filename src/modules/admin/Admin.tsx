@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, Route, Link } from 'react-router-dom';
 
-import { Navigation } from '../../components/organisms';
-import { Button } from '../../components/atoms';
+import { Navigation } from 'components/organisms';
+import { Button } from 'components/atoms';
 import renderTestsRoutes from './tests/Test';
 import renderQuestionsRoutes from './questions/Question';
 

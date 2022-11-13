@@ -14,7 +14,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "*": [
+        "./*"
+      ],
+      "components": [
+        "components"
+      ],
+      "root/*": [
+        "*"
+      ],
+      // "stream": ["./node_modules/readable-stream"]
+    },
   },
-  "include": ["src"]
+  "include": [ "src/**/*",]
 }
