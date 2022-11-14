@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useGetQuestions } from '../../../../hooks/api/useQuestions';
+import { useGetQuestions } from 'hooks/api/useQuestions';
 
 interface IQuestionList {
   className?: string;

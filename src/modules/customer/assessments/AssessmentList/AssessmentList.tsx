@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useGetTests } from '../../../../hooks/api/useTests';
+import { useGetTests } from 'hooks/api/useTests';
 
 interface ITestList {
   className?: string;

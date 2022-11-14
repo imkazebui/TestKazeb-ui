@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { Input, Button, TextEditor } from '../../../../components/atoms';
-import { FormItem, RadioGroup } from '../../../../components/molecules';
+import { Input, Button, TextEditor } from 'components/atoms';
+import { FormItem, RadioGroup } from 'components/molecules';
 
-import { IQuestion, useUpdateQuestion } from '../../../../hooks/api/useQuestions';
+import { IQuestion, useUpdateQuestion } from 'hooks/api/useQuestions';
 
 interface IQuestionForm {
   data?: IQuestion;
