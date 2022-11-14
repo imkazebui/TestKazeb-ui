@@ -12,6 +12,9 @@ export interface ITextEditorProps {
   readonly?: boolean;
   toolbar?: boolean | any[];
   theme?: 'snow' | 'bubble';
+  // eslint-disable-next-line no-unused-vars
+  onHandleChange?(value?: string | number): void;
+  // eslint-disable-next-line no-unused-vars
 }
 
 hljs.registerLanguage('javascript', javascript);
@@ -22,7 +25,7 @@ const modules = {
 
 const defaultToolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-  ['blockquote', 'code-block'],
+  // ['blockquote', 'code-block'],
 
   [{ header: 1 }, { header: 2 }], // custom button values
   [{ list: 'ordered' }, { list: 'bullet' }],
@@ -33,15 +36,16 @@ const defaultToolbarOptions = [
   [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  // [{ color: [] }, { background: [] }], // dropdown with defaults from theme
   [{ font: [] }],
   [{ align: [] }],
 
-  ['clean'], // remove formatting button
+  // ['clean'], // remove formatting button
 ];
 
 const TextEditor: React.FC<ITextEditorProps> = (props) => {
-  const { value = '', readonly = false, toolbar = defaultToolbarOptions, theme = 'snow' } = props;
+  // eslint-disable-next-line no-unused-vars
+  const { value = '', readonly = false, toolbar = defaultToolbarOptions, theme = 'snow', onHandleChange } = props;
 
   const newModules = {
     ...modules,
@@ -51,16 +55,21 @@ const TextEditor: React.FC<ITextEditorProps> = (props) => {
   const onKeyDown = (e: React.KeyboardEvent) => {
     e.stopPropagation();
   };
-
+  // eslint-disable-next-line no-unused-vars
+  const onHandleChanged = (e:any) => (event:any) => {
+    console.log('e123', e);
+  };
   return (
     <ReactQuill
       className=""
       theme={theme}
-      value={value}
+      // value={value}
       modules={newModules}
       readOnly={readonly}
       preserveWhitespace
       onKeyDown={onKeyDown}
+      onChange={onHandleChanged}
+      placeholder="For example: What is React ?"
     />
   );
 };

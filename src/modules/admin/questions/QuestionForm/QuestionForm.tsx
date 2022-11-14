@@ -9,6 +9,10 @@ interface IQuestionForm {
   data?: IQuestion;
 }
 
+// interface OptionForm {
+//   label: string | React.ReactNode;
+//   value: string | number;
+// }
 const defaultValues = {
   _id: 1,
   category: 'Javascript',
@@ -16,41 +20,41 @@ const defaultValues = {
   level: 'INTERMEDIATE',
   question: '',
   options: [],
-  answer: 0,
+  answer: 1,
 };
 
 const QuestionForm: React.FC<IQuestionForm> = (props) => {
   const { data = defaultValues } = props;
   const [formValues, setFormValues] = useState<IQuestion>(defaultValues);
-  const [options, setOptions] = useState<
-    {
+  const [options, setOptions] = useState<{
       label: string | React.ReactNode;
       value: string | number;
-    }[]
-  >(defaultValues.options);
+    }[]>(defaultValues.options);
   const updateQuestion = useUpdateQuestion();
 
   useEffect(() => {
     const newOptions = Array.from(Array(4).keys()).map((o) => ({
       value: o,
-      label: <TextEditor />,
+      label: '<TextEditor />',
     }));
-
+    console.log('newOptions', newOptions);
     setOptions(newOptions);
+    console.log('options options', options);
   }, []);
 
   useEffect(() => {
     setFormValues(data);
+    console.log('data2', data);
+    // const newOptions = data.options.map((o) => ({
+    //   value: o.id,
+    //   label: <TextEditor value={o.text} />,
+    // }));
 
-    const newOptions = data.options.map((o) => ({
-      value: o.id,
-      label: <TextEditor value={o.text} />,
-    }));
-
-    setOptions(newOptions);
+    // setOptions(newOptions);
   }, [data]);
 
   const onChangeAnswer = (answer: number) => {
+    console.log('prevuis', answer);
     setFormValues((preFormData: IQuestion) => {
       const newFormData: IQuestion = { ...preFormData, answer };
       return newFormData;
@@ -60,17 +64,17 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
   const handleSave = () => {
     updateQuestion.mutate(formValues);
   };
-
+  console.log('options 2', data);
   return (
     <form action="#" method="POST">
       <div className="shadow overflow-hidden sm:rounded-md">
         <div className="px-4 py-5 bg-white sm:p-6">
-          <div className="grid grid-cols-6 gap-6">
+          <div className="grid grid-cols-12 gap-14">
             <FormItem name="questionInput" label="Question" className="col-span-6">
               <TextEditor value={formValues.question} />
             </FormItem>
 
-            <FormItem name="questionOptions" label="Options " className="col-span-6">
+            <FormItem name="questionOptions" label="Select the right answer" className="col-span-6">
               <RadioGroup
                 options={options}
                 onChange={onChangeAnswer}
