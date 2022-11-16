@@ -11,7 +11,9 @@ export interface ITextEditorProps {
   value?: string;
   readonly?: boolean;
   toolbar?: boolean | any[];
-  theme?: 'snow' | 'bubble';
+  placeHolder? : string ;
+  theme?: 'snow' | 'bubble' ;
+  main?: boolean ;
   // eslint-disable-next-line no-unused-vars
   onHandleChange?(value?: string | number): void;
   // eslint-disable-next-line no-unused-vars
@@ -26,18 +28,15 @@ const modules = {
 const defaultToolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'], // toggled buttons
   // ['blockquote', 'code-block'],
-
   [{ header: 1 }, { header: 2 }], // custom button values
   [{ list: 'ordered' }, { list: 'bullet' }],
   [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
   [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
   [{ direction: 'rtl' }], // text direction
-
-  [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
+  // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+  // [{ header: [1, 2, 3, 4, 5, 6, false] }],
   // [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  [{ font: [] }],
+  // [{ font: [] }],
   [{ align: [] }],
 
   // ['clean'], // remove formatting button
@@ -45,7 +44,7 @@ const defaultToolbarOptions = [
 
 const TextEditor: React.FC<ITextEditorProps> = (props) => {
   // eslint-disable-next-line no-unused-vars
-  const { value = '', readonly = false, toolbar = defaultToolbarOptions, theme = 'snow', onHandleChange } = props;
+  const { value = '', readonly = false, toolbar = defaultToolbarOptions, theme = 'snow', onHandleChange, placeHolder, main } = props;
 
   const newModules = {
     ...modules,
@@ -57,7 +56,6 @@ const TextEditor: React.FC<ITextEditorProps> = (props) => {
   };
   // eslint-disable-next-line no-unused-vars
   const onHandleChanged = (e:any) => (event:any) => {
-    console.log('e123', e);
   };
   return (
     <ReactQuill
@@ -69,7 +67,8 @@ const TextEditor: React.FC<ITextEditorProps> = (props) => {
       preserveWhitespace
       onKeyDown={onKeyDown}
       onChange={onHandleChanged}
-      placeholder="For example: What is React ?"
+      placeholder={placeHolder}
+      style={{ height: main ? '250px' : '' }}
     />
   );
 };

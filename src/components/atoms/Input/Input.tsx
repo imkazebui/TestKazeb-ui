@@ -49,7 +49,7 @@ const Input: React.FC<IIputProps> = (props) => {
       value={inputValue}
       onChange={handleChangeValue}
       className={classNames(
-        'focus:ring-emerald-700 focus:border-emerald-700 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md',
+        'mb-4 focus:ring-emerald-700 focus:border-emerald-700 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md',
         className
       )}
     />

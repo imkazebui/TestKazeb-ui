@@ -3,12 +3,12 @@ import { Input, Button, TextEditor } from 'components/atoms';
 import { FormItem, RadioGroup } from 'components/molecules';
 import { IQuestion, useUpdateQuestion } from 'hooks/api/useQuestions';
 import { Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
 import { XIcon } from '@heroicons/react/solid';
-import { createSchema, initialValue } from '../../../../constants/form';
+import { createSchema, initialValue } from 'constants/form';
 
 interface IQuestionForm {
   data?: IQuestion;
+  handleClose?: () => void;
 }
 
 const defaultValues = {
@@ -22,7 +22,7 @@ const defaultValues = {
 };
 
 const QuestionForm: React.FC<IQuestionForm> = (props) => {
-  const { data = defaultValues } = props;
+  const { data = defaultValues, handleClose } = props;
   const [formValues, setFormValues] = useState<IQuestion>(defaultValues);
   const [options, setOptions] = useState<{
     label: string | React.ReactNode;
@@ -43,7 +43,6 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
       value: o,
       label: '<TextEditor />',
     }));
-
     setOptions(newOptions);
   }, []);
 
@@ -53,9 +52,11 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
       return newFormData;
     });
   };
+
   const handleSave = () => {
     updateQuestion.mutate(formValues);
   };
+  
   return (
     <Formik
       initialValues={initialValue}
@@ -65,7 +66,8 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
       validateOnMount
     >
       {({ values }) => {
-        console.log('formik', values);
+        // eslint-disable-next-line no-console
+        console.log('values', values);
         return (
           <Form>
             <div className="shadow overflow-hidden sm:rounded-md">
@@ -73,16 +75,14 @@ const QuestionForm: React.FC<IQuestionForm> = (props) => {
                 <div className="py-3 bg-cyan-700 grid grid-cols-3 gap-4 items-center">
                   <span className="col-start-1 col-end-1 text-left pl-4 text-white font-bold text-2xl">New Question</span>
                   <div className="col-end-5 col-span-1 text-right">
-                    <Button className="mx-2 bg-white text-black hover:bg-slate-200"><Link to="/admin/questions">Cancel</Link></Button>
+                    <Button className="mx-2 bg-white text-black hover:bg-slate-200" onClick={handleClose}>Cancel</Button>
                     <Button className="mx-2 bg-emerald-500 hover:bg-emerald-600" onClick={handleSave}>Save</Button>
-                    <Button className="bg-transparent">
-                      <Link to="/admin/questions">
-                        <XIcon className="h-5 w-5 bg-transparent text-white" />
-                      </Link>
+                    <Button className="bg-transparent" onClick={handleClose}>
+                      <XIcon className="h-5 w-5 bg-transparent text-white" />
                     </Button>
                   </div>
                 </div>
-                <div className="grid grid-cols-12 gap-14 sm:p-6 px-4 ">
+                <div className="grid grid-cols-12 gap-8 sm:p-6 px-4 ">
                   <FormItem name="name" label="Question" className="col-span-6">
                     <TextEditor main placeHolder="For example: What attracts you most to our company" value={formValues.question} />
                   </FormItem>

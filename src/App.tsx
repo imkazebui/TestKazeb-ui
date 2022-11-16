@@ -12,7 +12,7 @@ const Home = () => (
       <Link to="/customer">Customer</Link>
     </nav>
     <nav>
-      <Link to="/admin">Admin</Link>
+      <Link to="/admin/questions">Admin</Link>
     </nav>
   </>
 );

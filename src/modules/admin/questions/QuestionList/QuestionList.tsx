@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
 import { useGetQuestions } from 'hooks/api/useQuestions';
+import { Spinner } from 'components/atoms';
+import { headTable, dummy } from '../../../../constants/form';
 
 interface IQuestionList {
   className?: string;
@@ -21,7 +21,9 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
     if (status === 'loading') {
       return (
         <tr>
-          <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">Loading</td>
+          <td colSpan={12} className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">
+            <Spinner />
+          </td>
         </tr>
       );
     }
@@ -36,18 +38,19 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
       );
     }
 
-    return data.map((d) => (
+    return dummy.map((d) => (
       <tr
         // eslint-disable-next-line no-underscore-dangle
-        key={d?._id}
+        key={d?.id}
         className="hover:cursor-pointer hover:border hover:border-emerald-700"
         // eslint-disable-next-line no-underscore-dangle
-        onClick={goToQuestionDetails(d._id)}
       >
-        <td className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">{d?.question}</td>
-        <td className="border-b border-slate-100  p-4 text-slate-500 ">{d?.type}</td>
-        <td className="border-b border-slate-100  p-4 text-slate-500 ">{d?.category}</td>
-        <td className="border-b border-slate-100  p-4 pr-8 text-slate-500 ">{d?.level}</td>
+        <td colSpan={1} className="border-b border-slate-100  p-4 pl-8 text-slate-500 ">{d?.name}</td>
+        <td colSpan={1} className="border-b border-slate-100  p-4 text-slate-500 ">{d?.time}</td>
+        <td colSpan={1} className="border-b border-slate-100  p-4 pr-8 text-slate-500 ">{d?.level}</td>
+        <td colSpan={6} className="border-b border-slate-100  p-4 pr-8 text-slate-500 ">
+          <button aria-label="edit" type="button" onClick={goToQuestionDetails(d.id)}>edit</button>
+        </td>
       </tr>
     ));
   };
@@ -65,22 +68,23 @@ const QuestionList: React.FC<IQuestionList> = (props) => {
   };
 
   return (
-    <table className={classNames('border-collapse table-auto w-full text-sm bg-white', className)}>
-      <thead>
-        <tr>
-          <th className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">
-            Question
-          </th>
-          <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Type</th>
-          <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Category</th>
-          <th className="border-b  font-medium p-4 pr-8  pb-3 text-slate-400  text-left">Level</th>
-        </tr>
-      </thead>
-      <tbody className="">
-        {renderTableData()}
-        {renderFetchingNote()}
-      </tbody>
-    </table>
+    <div>
+      <table className={classNames('border-collapse table-auto w-full text-sm bg-white', className)}>
+        <thead>
+          <tr>
+            {headTable && headTable.map((title) => (
+              <th key={title} className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">
+                {title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="">
+          {renderTableData()}
+          {renderFetchingNote()}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

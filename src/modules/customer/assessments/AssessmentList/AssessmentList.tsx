@@ -64,19 +64,21 @@ const TestList: React.FC<ITestList> = (props) => {
   };
 
   return (
-    <table className={classNames('border-collapse table-auto w-full text-sm bg-white', className)}>
-      <thead>
-        <tr>
-          <th className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">Name</th>
-          <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Summary</th>
-          <th className="border-b  font-medium p-4 pr-8  pb-3 text-slate-400  text-left">Level</th>
-        </tr>
-      </thead>
-      <tbody className="">
-        {renderTableData()}
-        {renderFetchingNote()}
-      </tbody>
-    </table>
+    <div>
+      <table className={classNames('border-collapse table-auto w-full text-sm bg-white', className)}>
+        <thead>
+          <tr>
+            <th className="border-b  font-medium p-4 pl-8 pb-3 text-slate-400  text-left">Name</th>
+            <th className="border-b  font-medium p-4 pb-3 text-slate-400  text-left">Summary</th>
+            <th className="border-b  font-medium p-4 pr-8  pb-3 text-slate-400  text-left">Level</th>
+          </tr>
+        </thead>
+        <tbody className="">
+          {renderTableData()}
+          {renderFetchingNote()}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

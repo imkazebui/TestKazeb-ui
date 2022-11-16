@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 export interface IButtonProps {
   type?: 'button' | 'submit' | 'reset';
+  disabled? : boolean;
   className?: string;
   children: string | React.ReactNode;
   // eslint-disable-next-line no-unused-vars
@@ -11,7 +12,7 @@ export interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = (props) => {
-  const { type = 'button', className = '', children, onClick } = props;
+  const { type = 'button', className = '', children, onClick, disabled } = props;
 
   const handleClick = (e?: React.MouseEvent<HTMLButtonElement>): void => {
     if (onClick) {
@@ -22,6 +23,7 @@ const Button: React.FC<IButtonProps> = (props) => {
   return (
     <button
       type={type}
+      disabled={disabled}
       className={classNames(
         'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500',
         className

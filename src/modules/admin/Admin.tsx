@@ -15,7 +15,7 @@ const AdminPage = () => (
       </div>
       <div className="grow-0">
         <Button>
-          <Link to="questions/create">Create</Link>
+          <Link to="questions/new">Create</Link>
         </Button>
       </div>
     </header>
