@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetQuestion } from '../../../../hooks/api/useQuestions';
+import { useGetQuestion } from 'hooks/api/useQuestions';
 import QuestionForm from '../QuestionForm';
 
 interface IQuestionDetails {
