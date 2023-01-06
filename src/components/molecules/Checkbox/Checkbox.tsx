@@ -22,7 +22,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
           <label htmlFor="comments" className="font-medium text-gray-700">
             Comments
           </label>
-          <p className="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+          <span className="text-gray-500">Get notified when someones posts a comment on a posting.</span>
         </div>
       </div>
       <div className="flex items-start">
@@ -38,7 +38,7 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
           <label htmlFor="candidates" className="font-medium text-gray-700">
             Candidates
           </label>
-          <p className="text-gray-500">Get notified when a candidate applies for a job.</p>
+          <span className="text-gray-500">Get notified when a candidate applies for a job.</span>
         </div>
       </div>
       <div className="flex items-start">
@@ -54,9 +54,9 @@ const Checkbox: React.FC<ICheckboxProps> = (props) => {
           <label htmlFor="offers" className="font-medium text-gray-700">
             Offers
           </label>
-          <p className="text-gray-500">
+          <span className="text-gray-500">
             Get notified when a candidate accepts or rejects an offer.
-          </p>
+          </span>
         </div>
       </div>
     </div>

@@ -18,9 +18,6 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
       },
-      alias: [
-        ['components', './src/components'],
-      ]
     },
   },
   ignorePatterns: ['.eslintrc.js', 'tailwind.config.js'],
@@ -31,6 +28,8 @@ module.exports = {
     'react/require-default-props': 0,
     'object-curly-newline': 0,
     'react/jsx-curly-newline': 0,
+    "no-unused-vars": 1,
+    "@typescript-eslint/no-unused-vars": 1,
     'import/extensions': [
       'error',
       'ignorePackages',
