@@ -1,0 +1,76 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2020: true },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+  ],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-refresh"],
+  rules: {
+    "react/react-in-jsx-scope": 0,
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowConstantExport: true },
+    ],
+    "react/jsx-filename-extension": [1, { extensions: [".tsx", ".jsx"] }],
+    "react/function-component-definition": 0,
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "object-curly-newline": 0,
+    "react/jsx-curly-newline": 0,
+    "no-unused-vars": 1,
+    "@typescript-eslint/no-unused-vars": 1,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        mjs: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
+    "comma-dangle": [
+      "warn",
+      {
+        arrays: "always-multiline",
+        exports: "always-multiline",
+        functions: "never",
+        imports: "always-multiline",
+        objects: "always-multiline",
+      },
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        labelComponents: ["CustomInputLabel"],
+        labelAttributes: ["label"],
+        controlComponents: ["CustomInput"],
+        depth: 3,
+      },
+    ],
+    "implicit-arrow-linebreak": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-one-expression-per-line": 0,
+  },
+  overrides: [
+    {
+      files: ["**/*.stories.*"],
+      rules: {
+        "import/no-anonymous-default-export": "off",
+        "import/no-extraneous-dependencies": 0,
+        "object-curly-newline": 0,
+        "react/jsx-props-no-spreading": 0,
+        "import/prefer-default-export": 0,
+      },
+    },
+  ],
+};

@@ -1,30 +1,15 @@
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { router } from './router';
 
-import renderAdminRoutes from './modules/admin/Admin';
-import renderCustomerRoutes from './modules/customer/Customer';
+const queryClient = new QueryClient();
 
-import './App.css';
-
-const Home = () => (
-  <>
-    <nav>
-      <Link to="/customer">Customer</Link>
-    </nav>
-    <nav>
-      <Link to="/admin/questions">Admin</Link>
-    </nav>
-  </>
-);
-
-const App = () => (
-  <div className="min-h-full">
-    <Routes>
-      <Route path="/" element={<Home />} />
-      {renderAdminRoutes()}
-      {renderCustomerRoutes()}
-    </Routes>
-  </div>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
+}
 
 export default App;
